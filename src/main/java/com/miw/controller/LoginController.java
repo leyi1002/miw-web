@@ -18,8 +18,8 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("/login")
-    public boolean login(String username){
-        boolean login = userLoginServiceImpl.login(username, "");
+    public boolean login(String username,String password){
+        boolean login = userLoginServiceImpl.login(username, password);
         return login;
     }
 

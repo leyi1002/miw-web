@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="1000" debug="false">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+   <!-- <appender name="serviceAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/usr/local/tomcat/tomcat-api/service_impl_logs/%d{yyyy-MM-dd}/serviceImpl.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg [%file:%line] %n</pattern>
+        </encoder>
+        <append>false</append>
+    </appender>-->
+
+    <!--log4jdbc -->
+    <logger name="com.mlcs.core" level="debug"/>
+    <logger name="jdbc.sqltiming" level="debug"/>
+    <logger name="com.ibatis" level="debug" />
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="debug" />
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="debug" />
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="debug" />
+    <logger name="java.sql.Connection" level="debug" />
+    <logger name="java.sql.Statement" level="debug" />
+    <logger name="java.sql.PreparedStatement" level="debug" />
+    <logger name="java.sql.ResultSet" level="debug" />
+    <logger name="com.shengya.service.dao.*" level="debug" additivity="false"/>
+
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+
+
+</configuration>

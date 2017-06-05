@@ -1,5 +1,6 @@
 package com.miw.service.impl;
 
+import com.miw.bean.UserPrimary;
 import com.miw.dao.UserPrimaryDao;
 import com.miw.service.IUserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class UserLoginServiceImpl implements IUserLoginService {
 
     @Override
     public boolean login(String username, String password) {
+        UserPrimary user = userPrimaryDaoImpl.selectByUsername(username);
         if("zookeeper".equals(username)){
             return true;
         }
