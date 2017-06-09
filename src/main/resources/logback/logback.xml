@@ -8,16 +8,16 @@
         </layout>
     </appender>
 
-   <!-- <appender name="serviceAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="exceptionAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/usr/local/tomcat/tomcat-api/service_impl_logs/%d{yyyy-MM-dd}/serviceImpl.log</fileNamePattern>
+            <fileNamePattern>D:\plan\pro\idea\logs\%d{yyyy-MM-dd}\web.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg [%file:%line] %n</pattern>
         </encoder>
         <append>false</append>
-    </appender>-->
+    </appender>
 
     <!--log4jdbc -->
     <logger name="com.mlcs.core" level="debug"/>
@@ -37,6 +37,10 @@
         <appender-ref ref="STDOUT" />
     </root>
 
+    <!-- 打印未捕获的异常日志记录 -->
+    <logger name="com.miw.exception.resolver.ExceptionResolver" level="error" additivity="false">
+        <appender-ref ref="exceptionAppender"/>
+    </logger>
 
 
 </configuration>

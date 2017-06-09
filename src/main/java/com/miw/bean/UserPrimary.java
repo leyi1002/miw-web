@@ -1,11 +1,12 @@
 package com.miw.bean;
 
 
+import java.io.Serializable;
 
- /**
+/**
  * Created by ZhangJian on 2015-7-16.
  */
-public class UserPrimary {
+public class UserPrimary implements Serializable {
 
     private Integer id;
 
@@ -38,5 +39,12 @@ public class UserPrimary {
         this.password = password == null ? null : password.trim();
     }
 
-
-}
+     @Override
+     public String toString() {
+         return "UserPrimary{" +
+                 "id=" + id +
+                 ", username='" + username + '\'' +
+                 ", password='" + password + '\'' +
+                 '}';
+     }
+ }
