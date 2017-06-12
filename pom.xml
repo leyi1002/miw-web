@@ -165,8 +165,8 @@
             <id>dev</id>
             <properties>
                 <username>root</username>
-                <password>123123</password>
-                <jdbcUrl>jdbc:mysql://192.168.1.201:3306/zookeeper?useUnicode=true<![CDATA[&amp;]]>characterEncoding=utf8<![CDATA[&amp;]]>autoReconnect=true<![CDATA[&amp;]]>zeroDateTimeBehavior=convertToNull</jdbcUrl>
+                <password>aliyunlaizz</password>
+                <jdbcUrl>jdbc:mysql://47.93.200.10:3306/zookeeper?useUnicode=true<![CDATA[&amp;]]>characterEncoding=utf8<![CDATA[&amp;]]>autoReconnect=true<![CDATA[&amp;]]>zeroDateTimeBehavior=convertToNull</jdbcUrl>
                 <driverClass>com.mysql.jdbc.Driver</driverClass>
             </properties>
         </profile>
