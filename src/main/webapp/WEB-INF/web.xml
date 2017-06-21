@@ -40,6 +40,31 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- 配置 Druid 监控信息显示页面 -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <!-- 允许清空统计数据 -->
+            <param-name>resetEnable</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!-- <init-param>
+             &lt;!&ndash; 用户名 &ndash;&gt;
+             <param-name>loginUsername</param-name>
+             <param-value>admin</param-value>
+         </init-param>
+         <init-param>
+             &lt;!&ndash; 密码 &ndash;&gt;
+             <param-name>loginPassword</param-name>
+             <param-value>123456</param-value>
+         </init-param>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
     <!-- servlet -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
@@ -53,6 +78,9 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+
+
 
 
 </web-app>

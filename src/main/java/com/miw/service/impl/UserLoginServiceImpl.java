@@ -19,8 +19,8 @@ public class UserLoginServiceImpl implements IUserLoginService {
     @Override
     public boolean login(String username, String password) {
         UserPrimary user = userPrimaryDaoImpl.selectByUsername(username);
-        if(user != null){
-            if(password.equals(user.getPassword())){
+        if (user != null) {
+            if (password.equals(user.getPassword())) {
                 return true;
             }
         }
