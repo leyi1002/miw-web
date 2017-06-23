@@ -165,16 +165,40 @@
             <version>1.0.31</version>
         </dependency>
 
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.3.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
         <profile>
             <id>dev</id>
             <properties>
+                <!--mysql-->
                 <username>root</username>
                 <password>aliyunlaizz</password>
                 <jdbcUrl>jdbc:mysql://47.93.200.10:3306/zookeeper?useUnicode=true<![CDATA[&amp;]]>characterEncoding=utf8<![CDATA[&amp;]]>autoReconnect=true<![CDATA[&amp;]]>zeroDateTimeBehavior=convertToNull</jdbcUrl>
                 <driverClass>com.mysql.jdbc.Driver</driverClass>
+
+                <!--redis-->
+                <redis.host>47.93.200.10</redis.host>
+                <redis.port>6379</redis.port>
+                <jedis.maxTotal>8</jedis.maxTotal>
+                <jedis.maxIdle>6</jedis.maxIdle>
+                <jedis.minEvictableIdleTimeMillis>300000</jedis.minEvictableIdleTimeMillis>
+                <jedis.numTestsPerEvictionRun>3</jedis.numTestsPerEvictionRun>
+                <jedis.timeBetweenEvictionRunsMillis>60000</jedis.timeBetweenEvictionRunsMillis>
+                <jedis.maxWaitMillis>20000</jedis.maxWaitMillis>
+
             </properties>
         </profile>
     </profiles>

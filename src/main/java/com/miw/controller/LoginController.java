@@ -1,8 +1,8 @@
 package com.miw.controller;
 
 import com.miw.bean.UserPrimary;
+import com.miw.redis.RedisUtils;
 import com.miw.service.IUserLoginService;
-import com.miw.utils.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,8 @@ public class LoginController {
 
     @Autowired
     private IUserLoginService userLoginServiceImpl;
+    @Autowired
+    private RedisUtils redisUtils;
 
     @ResponseBody
     @RequestMapping("/login")
@@ -42,5 +44,11 @@ public class LoginController {
         return i;
     }
 
+    @ResponseBody
+    @RequestMapping("/redis")
+    public UserPrimary redis() {
+        UserPrimary s = redisUtils.addVerificationCode("123");
+        return s;
+    }
 
 }
