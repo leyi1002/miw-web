@@ -1,8 +1,12 @@
 package com.miw.utils;
 
+import org.springframework.data.redis.hash.JacksonHashMapper;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.*;
+import java.util.List;
 
 /**
  * Created by J lai on 2017/4/17 0017.
@@ -14,8 +18,10 @@ public class ExceptionUtils {
      * @param e
      * @return
      */
-    public static String toString(Throwable e){
-        if(e == null){ return "";}
+    public static String toString(Throwable e) {
+        if (e == null) {
+            return "";
+        }
         StringWriter sw = null;
         PrintWriter pw = null;
         try {
@@ -45,9 +51,11 @@ public class ExceptionUtils {
      * @param e
      * @return
      */
-    public static String toString(String messge , Throwable e){
-        if(e == null){ return "";}
-        return messge+"; nested exception is \n"+toString(e);
+    public static String toString(String messge, Throwable e) {
+        if (e == null) {
+            return "";
+        }
+        return messge + "; nested exception is \n" + toString(e);
     }
 
 }

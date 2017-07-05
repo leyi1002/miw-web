@@ -12,7 +12,6 @@
 
 
         <property name="maxTotal" value="${jedis.maxTotal}"/>
-
         <!-- 连接池中最大空闲的连接数 -->
         <property name="maxIdle" value="${jedis.maxIdle}"></property>
         <!-- 连接空闲的最小时间，达到此值后空闲连接将可能会被移除。负值(-1)表示不移除. -->
@@ -29,6 +28,7 @@
     <bean id="jedisFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="hostName" value="${redis.host}"/>
         <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
         <property name="usePool" value="true"/>
         <property name="poolConfig" ref="jedisPoolConfig"/>
     </bean>

@@ -8,18 +8,23 @@ import java.io.Serializable;
  */
 public class UserPrimary implements Serializable {
 
-    private Integer id;
+    private static final String serialVersionUID ="-5809782578272943999L";
+
+    private String id;
 
     private String username;
 
     private String password;
 
+    private UserInfo userInfo;
 
-    public Integer getId() {
+    private String code;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,7 +33,7 @@ public class UserPrimary implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getPassword() {
@@ -36,10 +41,30 @@ public class UserPrimary implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
-     @Override
+    public static String getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
      public String toString() {
          return "UserPrimary{" +
                  "id=" + id +

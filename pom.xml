@@ -177,6 +177,24 @@
             <version>2.9.0</version>
         </dependency>
 
+        <!--poi-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.16</version>
+        </dependency>
+
+        <!--rabbit-->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>1.7.3.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -191,7 +209,8 @@
 
                 <!--redis-->
                 <redis.host>47.93.200.10</redis.host>
-                <redis.port>6379</redis.port>
+                <redis.port>6666</redis.port>
+                <redis.password>zhangsandege:</redis.password>
                 <jedis.maxTotal>8</jedis.maxTotal>
                 <jedis.maxIdle>6</jedis.maxIdle>
                 <jedis.minEvictableIdleTimeMillis>300000</jedis.minEvictableIdleTimeMillis>
@@ -203,7 +222,6 @@
         </profile>
     </profiles>
 
-    <!-- 解决maven项目改变时候,idea重置项目的LanguageLevel和settingsJavaCompiler版本的问题-->
     <build>
         <resources>
             <resource>
@@ -213,6 +231,7 @@
         </resources>
 
         <plugins>
+            <!-- 解决maven项目编译的时候,idea重置项目的LanguageLevel和settingsJavaCompiler版本的问题-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -221,6 +240,21 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+
+            <!--编译时跳过test-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.5</version>
             </plugin>
         </plugins>
     </build>
