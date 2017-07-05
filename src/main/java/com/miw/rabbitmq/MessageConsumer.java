@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -15,6 +17,8 @@ import java.io.UnsupportedEncodingException;
 public class MessageConsumer implements MessageListener {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageConsumer.class);
+    @Autowired
+    private RabbitTemplate amqpTemplate;
 
     @Override
     public void onMessage(Message message) {

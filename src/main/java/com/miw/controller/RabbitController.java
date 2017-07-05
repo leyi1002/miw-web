@@ -30,22 +30,45 @@ public class RabbitController {
     private MessageProduce messageProduce;
 
 
+    /**
+     * direct 发送消息
+     * @param mess
+     */
     @RequestMapping("/direct")
-    public void messageProduce(){
-        messageProduce.sendMessage("一个消息");
+    public void messageProduce(String mess){
+        messageProduce.sendMessage("queueTestKey",mess);
     }
 
+    /**
+     * 发送消息至queue失败回调(ReturnCallBack)
+     * @param mess
+     */
+    @RequestMapping("/directReturn")
+    public void directReturn(String mess){
+        messageProduce.sendMessage("PPPPP",mess);
+    }
+
+    /**
+     * 广播消息
+     */
     @RequestMapping("/fanout")
     public void fanout(){
         messageProduce.fanout(" 广播 消息");
     }
 
-
+    /**
+     * topic 发送消息(pattern = *.miw.top.*)
+     *
+     */
     @RequestMapping("/top")
     public void topic(){
         messageProduce.topic("com.miw.top.top"," top 主题 消息");
     }
 
+    /**
+     * topic 发送消息(pattern = *.miw.bot.*)
+     *
+     */
     @RequestMapping("/bot")
     public void topicBot(){
         messageProduce.topic("com.miw.bot.bot"," bot 主题 消息");

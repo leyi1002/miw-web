@@ -6,12 +6,15 @@
 
     <context:component-scan base-package="com.miw.rabbitmq"/>
     <!--配置connection-factory，指定连接rabbit server参数 -->
-    <rabbit:connection-factory id="connectionFactory"
-                               username="rabbitmq" password="123123" host="47.93.200.10" port="5672"/>
+    <rabbit:connection-factory id="connectionFactory" username="rabbitmq" password="123123" host="47.93.200.10"
+                               port="5672" publisher-confirms="true" publisher-returns="true"/>
 
-    <!--定义rabbit template用于数据的接收和发送 -->
+    <!--定义rabbit template用于数据的接收和发送
+    confirm-callback:消息确认回调,确认消息是否到达broker服务器，也就是只确认是否正确到达exchange中即可，只要正确的到达exchange中，broker即可确认该消息返回给客户端ack
+    return-callBack:消息发送失败回调,消息是发送至queue失败时回调
+    -->
     <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
-                     exchange="directExc"/>
+                     exchange="directExc" confirm-callback="confirmCallBack" return-callback="returnCallBack" mandatory="true"/>
 
     <!--通过指定下面的admin信息，当前producer中的exchange和queue会在rabbitmq服务器上自动生成 -->
     <rabbit:admin connection-factory="connectionFactory"/>

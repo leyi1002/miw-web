@@ -19,10 +19,8 @@ public class MessageProduce {
     @Autowired
     private RabbitTemplate amqpTemplate;
 
-    public void sendMessage(Object message){
-        logger.info("send messages: " + message);
-        amqpTemplate.convertAndSend("queueTestKey",message);
-//        amqpTemplate.convertSendAndReceive("queueTestKey",message);
+    public void sendMessage(String routingkey,Object message){
+        amqpTemplate.convertAndSend(routingkey,message);
         System.out.println("zz");
     }
 
@@ -41,5 +39,8 @@ public class MessageProduce {
         amqpTemplate.convertAndSend("topicExc",routingtkey,message);
     }
 
+    public void reCall(){
+
+    }
 
 }
