@@ -20,7 +20,7 @@ public class MessageProduce {
     private RabbitTemplate amqpTemplate;
 
     public void sendMessage(String routingkey,Object message){
-        amqpTemplate.convertAndSend(routingkey,message);
+        amqpTemplate.convertAndSend("directExc",routingkey,message);
         System.out.println("zz");
     }
 

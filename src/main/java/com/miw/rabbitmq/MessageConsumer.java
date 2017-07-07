@@ -23,8 +23,9 @@ public class MessageConsumer implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
+            Thread.sleep(10000);
             logger.info("receive message : " + new String(message.getBody(),"utf-8"));
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -21,6 +21,8 @@
 
     <!--定义queue -->
     <rabbit:queue name="direcrQueue" durable="true" auto-delete="false" exclusive="false"/>
+    <rabbit:queue name="direcrQueue.direcrQueue" durable="true" auto-delete="false" exclusive="false"/>
+    <rabbit:queue name="direcrQueue.zhangsan" durable="true" auto-delete="false" exclusive="false"/>
     <rabbit:queue name="fanoutQueue1" durable="true" auto-delete="false" exclusive="false"/>
     <rabbit:queue name="fanoutQueue2" durable="true" auto-delete="false" exclusive="false"/>
     <rabbit:queue name="topQueue" durable="true" auto-delete="false" exclusive="false"/>
@@ -30,6 +32,8 @@
     <rabbit:direct-exchange name="directExc" durable="true" auto-delete="false">
         <rabbit:bindings>
             <rabbit:binding queue="direcrQueue" key="queueTestKey"></rabbit:binding>
+            <rabbit:binding queue="direcrQueue.direcrQueue" key="queueTestKey"></rabbit:binding>
+            <rabbit:binding queue="direcrQueue.zhangsan" key="queueTestKey"></rabbit:binding>
         </rabbit:bindings>
     </rabbit:direct-exchange>
 
@@ -52,6 +56,8 @@
     <!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
     <rabbit:listener-container connection-factory="connectionFactory">
         <rabbit:listener queues="direcrQueue" ref="messageConsumer"/>
+        <rabbit:listener queues="direcrQueue.direcrQueue" ref="messageConsumer"/>
+        <rabbit:listener queues="direcrQueue.zhangsan" ref="messageConsumer"/>
         <rabbit:listener queues="fanoutQueue1" ref="fanoutConsumer1"/>
         <rabbit:listener queues="fanoutQueue2" ref="fanoutConsumer2"/>
         <rabbit:listener queues="topQueue" ref="topicConsumer1"/>
