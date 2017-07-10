@@ -54,7 +54,8 @@
     </rabbit:topic-exchange>
 
     <!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
-    <rabbit:listener-container connection-factory="connectionFactory">
+    <!-- prefetch:消费者每次从queue预读的消息数量,适当的设置可以提升消费者的吞吐量-->
+    <rabbit:listener-container connection-factory="connectionFactory"  prefetch="2500">
         <rabbit:listener queues="direcrQueue" ref="messageConsumer"/>
         <rabbit:listener queues="direcrQueue.direcrQueue" ref="messageConsumer"/>
         <rabbit:listener queues="direcrQueue.zhangsan" ref="messageConsumer"/>

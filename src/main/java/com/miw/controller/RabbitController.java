@@ -71,7 +71,9 @@ public class RabbitController {
      */
     @RequestMapping("/bot")
     public void topicBot(){
-        messageProduce.topic("com.miw.bot.bot"," bot 主题 消息");
+        for(int i=0;i<5000;i++){
+            messageProduce.topic("com.miw.bot.bot"," bot 主题 消息"+i);
+        }
     }
 
 
