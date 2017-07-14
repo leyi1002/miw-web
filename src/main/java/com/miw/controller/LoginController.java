@@ -1,9 +1,11 @@
 package com.miw.controller;
 
+import com.miw.bean.OrderPrimary;
 import com.miw.bean.UserInfo;
 import com.miw.bean.UserPrimary;
 import com.miw.rabbitmq.MessageConsumer;
 import com.miw.rabbitmq.MessageProduce;
+import com.miw.redis.OrderPrimaryRedis;
 import com.miw.redis.RedisUtils;
 import com.miw.redis.UserPrimaryRedis;
 import com.miw.service.IUserLoginService;
@@ -37,6 +39,8 @@ public class LoginController {
     private MessageProduce messageProduce;
     @Autowired
     private MessageConsumer messageConsumer;
+    @Autowired
+    private OrderPrimaryRedis orderPrimaryRedis;
 
     @ResponseBody
     @RequestMapping("/login")
@@ -82,7 +86,7 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/redisGet")
     public UserPrimary redisGet() {
-        UserPrimary hashObj = redisUtils.getHashObj("" + 5);
+        UserPrimary hashObj = redisUtils.getHashObj("" + 13);
         return hashObj;
     }
 
@@ -95,10 +99,10 @@ public class LoginController {
         UserPrimary userPrimary = new UserPrimary();
         userPrimary.setUsername("张四口");
         userPrimary.setPassword("33");
-        userPrimary.setId(3 + "");
         userPrimary.setUserInfo(u);
-        for(int i=0;i<5;i++){
-            Boolean aBoolean = userPrimaryRedis.saveHashObjExprieSecond("uid:" + i,100000,userPrimary);
+        for(int i=10;i<15;i++){
+            userPrimary.setId((3+i)+ "");
+            Boolean aBoolean = userPrimaryRedis.saveHashObjExprieSecond("uid:" + i,userPrimary,100000);
 
         }
         return true;
@@ -114,9 +118,29 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/list")
     public List<UserPrimary> list() {
-        List<String> strings = Arrays.asList("uid:0", "uid:1", "uid:2");
-        List<UserPrimary> list = redisUtils.getList(strings);
-        return list;
+        List<String> strings = Arrays.asList("uid:11", "uid:12", "uid:13");
+//        List<UserPrimary> list = redisUtils.getList(strings);
+        List<UserPrimary> hashObjList = userPrimaryRedis.getHashObjList(strings);
+        return hashObjList;
+    }
+
+    @ResponseBody
+    @RequestMapping("/orderAA")
+    public OrderPrimary orderAA() {
+        OrderPrimary orderPrimary = new OrderPrimary();
+        orderPrimary.setOrderType(1+"");
+        orderPrimary.setOrderDetail("1231243124");
+        orderPrimaryRedis.saveHashObj("order:1",orderPrimary);
+        return null;
+    }
+
+    @ResponseBody
+    @RequestMapping("/listAA")
+    public String listAA() {
+        List<String> strings = Arrays.asList("uid:11", "uid:12", "uid:13");
+        List<UserPrimary> hashObjList = userPrimaryRedis.getHashObjList(strings);
+        OrderPrimary hashObj = orderPrimaryRedis.getHashObj("order:1");
+        return "";
     }
 
 
