@@ -56,5 +56,5 @@
     <logger name="com.miw.rabbitmq" level="info" additivity="false">
         <appender-ref ref="rabbitAppender"/>
     </logger>
-
+    <logger name="org.springframework.amqp.rabbit" level="info"></logger>
 </configuration>
